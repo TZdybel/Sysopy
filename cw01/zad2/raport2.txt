@@ -1,0 +1,48 @@
+Wyniki dla tablicy statycznej o wymiarach 9000 x 9000
+Tworzenie tablicy - czas rzeczywisty: 1.0811520000, czas uzytkownika: 1.0500000000, czas systemowy: 0.0200000000
+Wyszukiwanie podobnego elementu - czas rzeczywisty: 0.2654670000, czas uzytkownika: 0.2700000000, czas systemowy: 0.0000000000
+Usunięcie blokow i wstawienie w ich miejsce nowych - czas rzeczywisty: 0.6630630000, czas uzytkownika: 0.6600000000, czas systemowy: 0.0000000000
+Usuwanie i wstawianie blokow na przemian - czas rzeczywisty: 0.6623280000, czas uzytkownika: 0.6600000000, czas systemowy: 0.0000000000
+
+
+Wyniki dla tablicy dynamicznej o wymiarach 9000 x 9000
+Tworzenie tablicy - czas rzeczywisty: 1.0670500000, czas uzytkownika: 1.0400000000, czas systemowy: 0.0200000000
+Wyszukiwanie podobnego elementu - czas rzeczywisty: 0.2444540000, czas uzytkownika: 0.2400000000, czas systemowy: 0.0000000000
+Usunięcie blokow i wstawienie w ich miejsce nowych - czas rzeczywisty: 0.5183350000, czas uzytkownika: 0.5200000000, czas systemowy: 0.0000000000
+Usuwanie i wstawianie blokow na przemian - czas rzeczywisty: 0.5191920000, czas uzytkownika: 0.5200000000, czas systemowy: 0.0000000000
+
+
+Wyniki dla tablicy statycznej o wymiarach 2000 x 2000
+Tworzenie tablicy - czas rzeczywisty: 0.0610370000, czas uzytkownika: 0.0500000000, czas systemowy: 0.0000000000
+Wyszukiwanie podobnego elementu - czas rzeczywisty: 0.0133420000, czas uzytkownika: 0.0200000000, czas systemowy: 0.0000000000
+Usunięcie blokow i wstawienie w ich miejsce nowych - czas rzeczywisty: 0.0324950000, czas uzytkownika: 0.0300000000, czas systemowy: 0.0000000000
+Usuwanie i wstawianie blokow na przemian - czas rzeczywisty: 0.0325910000, czas uzytkownika: 0.0300000000, czas systemowy: 0.0000000000
+
+
+Wyniki dla tablicy dynamicznej o wymiarach 2000 x 2000
+Tworzenie tablicy - czas rzeczywisty: 0.0570940000, czas uzytkownika: 0.0500000000, czas systemowy: 0.0000000000
+Wyszukiwanie podobnego elementu - czas rzeczywisty: 0.0122320000, czas uzytkownika: 0.0100000000, czas systemowy: 0.0000000000
+Usunięcie blokow i wstawienie w ich miejsce nowych - czas rzeczywisty: 0.0258890000, czas uzytkownika: 0.0300000000, czas systemowy: 0.0000000000
+Usuwanie i wstawianie blokow na przemian - czas rzeczywisty: 0.0256880000, czas uzytkownika: 0.0200000000, czas systemowy: 0.0000000000
+
+
+Wyniki dla tablicy statycznej o wymiarach 100 x 100
+Tworzenie tablicy - czas rzeczywisty: 0.0010110000, czas uzytkownika: 0.0000000000, czas systemowy: 0.0000000000
+Wyszukiwanie podobnego elementu - czas rzeczywisty: 0.0001210000, czas uzytkownika: 0.0000000000, czas systemowy: 0.0000000000
+Usunięcie blokow i wstawienie w ich miejsce nowych - czas rzeczywisty: 0.0002940000, czas uzytkownika: 0.0000000000, czas systemowy: 0.0000000000
+Usuwanie i wstawianie blokow na przemian - czas rzeczywisty: 0.0002850000, czas uzytkownika: 0.0000000000, czas systemowy: 0.0000000000
+
+
+Wyniki dla tablicy dynamicznej o wymiarach 100 x 100
+Tworzenie tablicy - czas rzeczywisty: 0.0004930000, czas uzytkownika: 0.0000000000, czas systemowy: 0.0000000000
+Wyszukiwanie podobnego elementu - czas rzeczywisty: 0.0001180000, czas uzytkownika: 0.0000000000, czas systemowy: 0.0000000000
+Usunięcie blokow i wstawienie w ich miejsce nowych - czas rzeczywisty: 0.0002390000, czas uzytkownika: 0.0000000000, czas systemowy: 0.0000000000
+Usuwanie i wstawianie blokow na przemian - czas rzeczywisty: 0.0002360000, czas uzytkownika: 0.0000000000, czas systemowy: 0.0000000000
+
+
+
+
+WNIOSKI:
+Niezależnie od tego jak duża jest tablica, czas rzeczywisty zawsze jest na korzyść tablicy dynamicznej, przy każdej z 4 operacji.
+Jeśli chodzi o czas użytkownika, jest on zawsze bliski czasowi rzeczywistemu i również przemawia na korzyść tablic dynamicznych.
+Czas systemowy może zawierać pewne błędy w wyniku złego algorytmu, gdyż wszędzie pokazuje wynik 0.0000000000 oprócz przy tworzeniu tablic statycznych czy dynamicznych o bardzo dużych rozmiarach. Wtedy wynikiem jest 0.0200000000.
