@@ -1,0 +1,168 @@
+POZIOM OPTYMALIZACJI O1:
+-biblioteka statyczna
+
+Wyniki dla tablicy statycznej o wymiarach 100 x 100
+Tworzenie tablicy - czas rzeczywisty: 0.0010050000, czas uzytkownika: 0.0000000000, czas systemowy: 0.0000000000
+Wyszukiwanie podobnego elementu - czas rzeczywisty: 0.0000350000, czas uzytkownika: 0.0000000000, czas systemowy: 0.0000000000
+Usunięcie blokow i wstawienie w ich miejsce nowych - czas rzeczywisty: 0.0002080000, czas uzytkownika: 0.0000000000, czas systemowy: 0.0000000000
+Usuwanie i wstawianie blokow na przemian - czas rzeczywisty: 0.0001800000, czas uzytkownika: 0.0000000000, czas systemowy: 0.0000000000
+
+Wyniki dla tablicy dynamicznej o wymiarach 100 x 100
+Tworzenie tablicy - czas rzeczywisty: 0.0004140000, czas uzytkownika: 0.0000000000, czas systemowy: 0.0000000000
+Wyszukiwanie podobnego elementu - czas rzeczywisty: 0.0000730000, czas uzytkownika: 0.0000000000, czas systemowy: 0.0000000000
+Usunięcie blokow i wstawienie w ich miejsce nowych - czas rzeczywisty: 0.0001890000, czas uzytkownika: 0.0000000000, czas systemowy: 0.0000000000
+Usuwanie i wstawianie blokow na przemian - czas rzeczywisty: 0.0001870000, czas uzytkownika: 0.0000000000, czas systemowy: 0.0000000000
+
+Wyniki dla tablicy statycznej o wymiarach 9000 x 9000
+Tworzenie tablicy - czas rzeczywisty: 0.8073370000, czas uzytkownika: 0.7800000000, czas systemowy: 0.0200000000
+Wyszukiwanie podobnego elementu - czas rzeczywisty: 0.0450540000, czas uzytkownika: 0.0400000000, czas systemowy: 0.0000000000
+Usunięcie blokow i wstawienie w ich miejsce nowych - czas rzeczywisty: 0.4046690000, czas uzytkownika: 0.4100000000, czas systemowy: 0.0000000000
+Usuwanie i wstawianie blokow na przemian - czas rzeczywisty: 0.4052450000, czas uzytkownika: 0.4000000000, czas systemowy: 0.0000000000
+
+Wyniki dla tablicy dynamicznej o wymiarach 9000 x 9000
+Tworzenie tablicy - czas rzeczywisty: 0.8418310000, czas uzytkownika: 0.8100000000, czas systemowy: 0.0200000000
+Wyszukiwanie podobnego elementu - czas rzeczywisty: 0.1374070000, czas uzytkownika: 0.1400000000, czas systemowy: 0.0000000000
+Usunięcie blokow i wstawienie w ich miejsce nowych - czas rzeczywisty: 0.4090190000, czas uzytkownika: 0.4100000000, czas systemowy: 0.0000000000
+Usuwanie i wstawianie blokow na przemian - czas rzeczywisty: 0.4060910000, czas uzytkownika: 0.4000000000, czas systemowy: 0.0000000000
+
+
+
+
+-biblioteka współdzielona
+
+Wyniki dla tablicy statycznej o wymiarach 100 x 100
+Tworzenie tablicy - czas rzeczywisty: 0.0008460000, czas uzytkownika: 0.0000000000, czas systemowy: 0.0000000000
+Wyszukiwanie podobnego elementu - czas rzeczywisty: 0.0000300000, czas uzytkownika: 0.0000000000, czas systemowy: 0.0000000000
+Usunięcie blokow i wstawienie w ich miejsce nowych - czas rzeczywisty: 0.0001840000, czas uzytkownika: 0.0000000000, czas systemowy: 0.0000000000
+Usuwanie i wstawianie blokow na przemian - czas rzeczywisty: 0.0001800000, czas uzytkownika: 0.0000000000, czas systemowy: 0.0000000000
+
+Wyniki dla tablicy dynamicznej o wymiarach 100 x 100
+Tworzenie tablicy - czas rzeczywisty: 0.0004860000, czas uzytkownika: 0.0000000000, czas systemowy: 0.0000000000
+Wyszukiwanie podobnego elementu - czas rzeczywisty: 0.0000840000, czas uzytkownika: 0.0000000000, czas systemowy: 0.0000000000
+Usunięcie blokow i wstawienie w ich miejsce nowych - czas rzeczywisty: 0.0002180000, czas uzytkownika: 0.0000000000, czas systemowy: 0.0000000000
+Usuwanie i wstawianie blokow na przemian - czas rzeczywisty: 0.0002180000, czas uzytkownika: 0.0000000000, czas systemowy: 0.0000000000
+
+Wyniki dla tablicy statycznej o wymiarach 9000 x 9000
+Tworzenie tablicy - czas rzeczywisty: 0.8084580000, czas uzytkownika: 0.7800000000, czas systemowy: 0.0200000000
+Wyszukiwanie podobnego elementu - czas rzeczywisty: 0.0466230000, czas uzytkownika: 0.0400000000, czas systemowy: 0.0000000000
+Usunięcie blokow i wstawienie w ich miejsce nowych - czas rzeczywisty: 0.4118790000, czas uzytkownika: 0.4200000000, czas systemowy: 0.0000000000
+Usuwanie i wstawianie blokow na przemian - czas rzeczywisty: 0.4043260000, czas uzytkownika: 0.4000000000, czas systemowy: 0.0000000000
+
+Wyniki dla tablicy dynamicznej o wymiarach 9000 x 9000
+Tworzenie tablicy - czas rzeczywisty: 0.8432060000, czas uzytkownika: 0.8200000000, czas systemowy: 0.0200000000
+Wyszukiwanie podobnego elementu - czas rzeczywisty: 0.1371090000, czas uzytkownika: 0.1300000000, czas systemowy: 0.0000000000
+Usunięcie blokow i wstawienie w ich miejsce nowych - czas rzeczywisty: 0.4087690000, czas uzytkownika: 0.4100000000, czas systemowy: 0.0000000000
+Usuwanie i wstawianie blokow na przemian - czas rzeczywisty: 0.4049530000, czas uzytkownika: 0.4100000000, czas systemowy: 0.0000000000
+
+
+
+POZIOM OPTYMALIZACJI C3:
+-biblioteka statyczna
+
+Wyniki dla tablicy statycznej o wymiarach 100 x 100
+Tworzenie tablicy - czas rzeczywisty: 0.0009980000, czas uzytkownika: 0.0000000000, czas systemowy: 0.0000000000
+Wyszukiwanie podobnego elementu - czas rzeczywisty: 0.0000240000, czas uzytkownika: 0.0000000000, czas systemowy: 0.0000000000
+Usunięcie blokow i wstawienie w ich miejsce nowych - czas rzeczywisty: 0.0001960000, czas uzytkownika: 0.0000000000, czas systemowy: 0.0000000000
+Usuwanie i wstawianie blokow na przemian - czas rzeczywisty: 0.0002200000, czas uzytkownika: 0.0000000000, czas systemowy: 0.0000000000
+
+Wyniki dla tablicy dynamicznej o wymiarach 100 x 100
+Tworzenie tablicy - czas rzeczywisty: 0.0004240000, czas uzytkownika: 0.0000000000, czas systemowy: 0.0000000000
+Wyszukiwanie podobnego elementu - czas rzeczywisty: 0.0000230000, czas uzytkownika: 0.0000000000, czas systemowy: 0.0000000000
+Usunięcie blokow i wstawienie w ich miejsce nowych - czas rzeczywisty: 0.0001880000, czas uzytkownika: 0.0000000000, czas systemowy: 0.0000000000
+Usuwanie i wstawianie blokow na przemian - czas rzeczywisty: 0.0002030000, czas uzytkownika: 0.0000000000, czas systemowy: 0.0000000000
+
+Wyniki dla tablicy statycznej o wymiarach 9000 x 9000
+Tworzenie tablicy - czas rzeczywisty: 0.7576010000, czas uzytkownika: 0.7300000000, czas systemowy: 0.0200000000
+Wyszukiwanie podobnego elementu - czas rzeczywisty: 0.0257790000, czas uzytkownika: 0.0300000000, czas systemowy: 0.0000000000
+Usunięcie blokow i wstawienie w ich miejsce nowych - czas rzeczywisty: 0.3824330000, czas uzytkownika: 0.3800000000, czas systemowy: 0.0000000000
+Usuwanie i wstawianie blokow na przemian - czas rzeczywisty: 0.4148500000, czas uzytkownika: 0.4100000000, czas systemowy: 0.0000000000
+
+Wyniki dla tablicy dynamicznej o wymiarach 9000 x 9000
+Tworzenie tablicy - czas rzeczywisty: 0.9239900000, czas uzytkownika: 0.9000000000, czas systemowy: 0.0200000000
+Wyszukiwanie podobnego elementu - czas rzeczywisty: 0.0289830000, czas uzytkownika: 0.0300000000, czas systemowy: 0.0000000000
+Usunięcie blokow i wstawienie w ich miejsce nowych - czas rzeczywisty: 0.4133870000, czas uzytkownika: 0.4100000000, czas systemowy: 0.0000000000
+Usuwanie i wstawianie blokow na przemian - czas rzeczywisty: 0.4493570000, czas uzytkownika: 0.4500000000, czas systemowy: 0.0000000000
+
+
+-biblioteka współdzielona
+
+Wyniki dla tablicy statycznej o wymiarach 100 x 100
+Tworzenie tablicy - czas rzeczywisty: 0.0010010000, czas uzytkownika: 0.0000000000, czas systemowy: 0.0000000000
+Wyszukiwanie podobnego elementu - czas rzeczywisty: 0.0000210000, czas uzytkownika: 0.0000000000, czas systemowy: 0.0000000000
+Usunięcie blokow i wstawienie w ich miejsce nowych - czas rzeczywisty: 0.0001950000, czas uzytkownika: 0.0000000000, czas systemowy: 0.0000000000
+Usuwanie i wstawianie blokow na przemian - czas rzeczywisty: 0.0001820000, czas uzytkownika: 0.0000000000, czas systemowy: 0.0000000000
+
+Wyniki dla tablicy dynamicznej o wymiarach 100 x 100
+Tworzenie tablicy - czas rzeczywisty: 0.0004300000, czas uzytkownika: 0.0000000000, czas systemowy: 0.0000000000
+Wyszukiwanie podobnego elementu - czas rzeczywisty: 0.0000230000, czas uzytkownika: 0.0000000000, czas systemowy: 0.0000000000
+Usunięcie blokow i wstawienie w ich miejsce nowych - czas rzeczywisty: 0.0001880000, czas uzytkownika: 0.0000000000, czas systemowy: 0.0000000000
+Usuwanie i wstawianie blokow na przemian - czas rzeczywisty: 0.0002030000, czas uzytkownika: 0.0000000000, czas systemowy: 0.0000000000
+
+Wyniki dla tablicy statycznej o wymiarach 9000 x 9000
+Tworzenie tablicy - czas rzeczywisty: 0.7600140000, czas uzytkownika: 0.7200000000, czas systemowy: 0.0300000000
+Wyszukiwanie podobnego elementu - czas rzeczywisty: 0.0256730000, czas uzytkownika: 0.0200000000, czas systemowy: 0.0000000000
+Usunięcie blokow i wstawienie w ich miejsce nowych - czas rzeczywisty: 0.3792830000, czas uzytkownika: 0.3800000000, czas systemowy: 0.0000000000
+Usuwanie i wstawianie blokow na przemian - czas rzeczywisty: 0.4150860000, czas uzytkownika: 0.4200000000, czas systemowy: 0.0000000000
+
+Wyniki dla tablicy dynamicznej o wymiarach 9000 x 9000
+Tworzenie tablicy - czas rzeczywisty: 0.9276820000, czas uzytkownika: 0.8900000000, czas systemowy: 0.0300000000
+Wyszukiwanie podobnego elementu - czas rzeczywisty: 0.0287080000, czas uzytkownika: 0.0300000000, czas systemowy: 0.0000000000
+Usunięcie blokow i wstawienie w ich miejsce nowych - czas rzeczywisty: 0.4116580000, czas uzytkownika: 0.4100000000, czas systemowy: 0.0000000000
+Usuwanie i wstawianie blokow na przemian - czas rzeczywisty: 0.4493120000, czas uzytkownika: 0.4500000000, czas systemowy: 0.0000000000
+
+POZIOM OPTYMALIZACJI Os:
+
+-biblioteka statyczna
+
+Wyniki dla tablicy statycznej o wymiarach 100 x 100
+Tworzenie tablicy - czas rzeczywisty: 0.0008200000, czas uzytkownika: 0.0000000000, czas systemowy: 0.0000000000
+Wyszukiwanie podobnego elementu - czas rzeczywisty: 0.0000320000, czas uzytkownika: 0.0000000000, czas systemowy: 0.0000000000
+Usunięcie blokow i wstawienie w ich miejsce nowych - czas rzeczywisty: 0.0002090000, czas uzytkownika: 0.0000000000, czas systemowy: 0.0000000000
+Usuwanie i wstawianie blokow na przemian - czas rzeczywisty: 0.0002030000, czas uzytkownika: 0.0000000000, czas systemowy: 0.0000000000
+
+Wyniki dla tablicy dynamicznej o wymiarach 100 x 100
+Tworzenie tablicy - czas rzeczywisty: 0.0005750000, czas uzytkownika: 0.0000000000, czas systemowy: 0.0000000000
+Wyszukiwanie podobnego elementu - czas rzeczywisty: 0.0000770000, czas uzytkownika: 0.0000000000, czas systemowy: 0.0000000000
+Usunięcie blokow i wstawienie w ich miejsce nowych - czas rzeczywisty: 0.0002830000, czas uzytkownika: 0.0000000000, czas systemowy: 0.0000000000
+Usuwanie i wstawianie blokow na przemian - czas rzeczywisty: 0.0002710000, czas uzytkownika: 0.0000000000, czas systemowy: 0.0000000000
+
+Wyniki dla tablicy statycznej o wymiarach 9000 x 9000
+Tworzenie tablicy - czas rzeczywisty: 1.0452520000, czas uzytkownika: 1.0300000000, czas systemowy: 0.0100000000
+Wyszukiwanie podobnego elementu - czas rzeczywisty: 0.0687040000, czas uzytkownika: 0.0700000000, czas systemowy: 0.0000000000
+Usunięcie blokow i wstawienie w ich miejsce nowych - czas rzeczywisty: 0.5196440000, czas uzytkownika: 0.5200000000, czas systemowy: 0.0000000000
+Usuwanie i wstawianie blokow na przemian - czas rzeczywisty: 0.5189940000, czas uzytkownika: 0.5100000000, czas systemowy: 0.0000000000
+
+Wyniki dla tablicy dynamicznej o wymiarach 9000 x 9000
+Tworzenie tablicy - czas rzeczywisty: 1.0732530000, czas uzytkownika: 1.0500000000, czas systemowy: 0.0200000000
+Wyszukiwanie podobnego elementu - czas rzeczywisty: 0.1168030000, czas uzytkownika: 0.1100000000, czas systemowy: 0.0000000000
+Usunięcie blokow i wstawienie w ich miejsce nowych - czas rzeczywisty: 0.5182260000, czas uzytkownika: 0.5200000000, czas systemowy: 0.0000000000
+Usuwanie i wstawianie blokow na przemian - czas rzeczywisty: 0.5146780000, czas uzytkownika: 0.5200000000, czas systemowy: 0.0000000000
+
+
+-biblioteka współdzielona
+
+Wyniki dla tablicy statycznej o wymiarach 100 x 100
+Tworzenie tablicy - czas rzeczywisty: 0.0009780000, czas uzytkownika: 0.0000000000, czas systemowy: 0.0000000000
+Wyszukiwanie podobnego elementu - czas rzeczywisty: 0.0000360000, czas uzytkownika: 0.0000000000, czas systemowy: 0.0000000000
+Usunięcie blokow i wstawienie w ich miejsce nowych - czas rzeczywisty: 0.0002330000, czas uzytkownika: 0.0000000000, czas systemowy: 0.0000000000
+Usuwanie i wstawianie blokow na przemian - czas rzeczywisty: 0.0002320000, czas uzytkownika: 0.0000000000, czas systemowy: 0.0000000000
+
+Wyniki dla tablicy dynamicznej o wymiarach 100 x 100
+Tworzenie tablicy - czas rzeczywisty: 0.0004850000, czas uzytkownika: 0.0000000000, czas systemowy: 0.0000000000
+Wyszukiwanie podobnego elementu - czas rzeczywisty: 0.0000660000, czas uzytkownika: 0.0000000000, czas systemowy: 0.0000000000
+Usunięcie blokow i wstawienie w ich miejsce nowych - czas rzeczywisty: 0.0002420000, czas uzytkownika: 0.0000000000, czas systemowy: 0.0000000000
+Usuwanie i wstawianie blokow na przemian - czas rzeczywisty: 0.0002330000, czas uzytkownika: 0.0000000000, czas systemowy: 0.0000000000
+
+Wyniki dla tablicy statycznej o wymiarach 9000 x 9000
+Tworzenie tablicy - czas rzeczywisty: 1.0473140000, czas uzytkownika: 1.0000000000, czas systemowy: 0.0400000000
+Wyszukiwanie podobnego elementu - czas rzeczywisty: 0.0683940000, czas uzytkownika: 0.0700000000, czas systemowy: 0.0000000000
+Usunięcie blokow i wstawienie w ich miejsce nowych - czas rzeczywisty: 0.5210350000, czas uzytkownika: 0.5200000000, czas systemowy: 0.0000000000
+Usuwanie i wstawianie blokow na przemian - czas rzeczywisty: 0.5229340000, czas uzytkownika: 0.5300000000, czas systemowy: 0.0000000000
+
+Wyniki dla tablicy dynamicznej o wymiarach 9000 x 9000
+Tworzenie tablicy - czas rzeczywisty: 1.0596650000, czas uzytkownika: 1.0300000000, czas systemowy: 0.0200000000
+Wyszukiwanie podobnego elementu - czas rzeczywisty: 0.1156700000, czas uzytkownika: 0.1200000000, czas systemowy: 0.0000000000
+Usunięcie blokow i wstawienie w ich miejsce nowych - czas rzeczywisty: 0.5160690000, czas uzytkownika: 0.5100000000, czas systemowy: 0.0000000000
+Usuwanie i wstawianie blokow na przemian - czas rzeczywisty: 0.5140160000, czas uzytkownika: 0.5200000000, czas systemowy: 0.0000000000
+
+
