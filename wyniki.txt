@@ -1,0 +1,124 @@
+Liczba rekordów: 3000, Długość rekordu: 4
+Pomiary czasu dla funkcji copy przy użyciu funkcji sys:
+Czas uzytkownika: 0.0000000000, czas systemowy: 0.0300000000
+
+Pomiary czasu dla funkcji copy przy użyciu funkcji lib:
+Czas uzytkownika: 0.0000000000, czas systemowy: 0.0000000000
+
+Pomiary czasu dla funkcji sort przy użyciu funkcji sys:
+Czas uzytkownika: 2.1600000000, czas systemowy: 8.0000000000
+
+Pomiary czasu dla funkcji sort przy użyciu funkcji lib:
+Czas uzytkownika: 2.3600000000, czas systemowy: 7.8700000000
+
+
+
+Liczba rekordów: 4000, Długość rekordu: 4
+Pomiary czasu dla funkcji copy przy użyciu funkcji sys:
+Czas uzytkownika: 0.0000000000, czas systemowy: 0.0100000000
+
+Pomiary czasu dla funkcji copy przy użyciu funkcji lib:
+Czas uzytkownika: 0.0000000000, czas systemowy: 0.0000000000
+
+Pomiary czasu dla funkcji sort przy użyciu funkcji sys:
+Czas uzytkownika: 3.7200000000, czas systemowy: 13.3000000000
+
+Pomiary czasu dla funkcji sort przy użyciu funkcji lib:
+Czas uzytkownika: 4.7200000000, czas systemowy: 12.9200000000
+
+
+
+Liczba rekordów: 2000, Długość rekordu: 512
+Pomiary czasu dla funkcji copy przy użyciu funkcji sys:
+Czas uzytkownika: 0.0000000000, czas systemowy: 0.0000000000
+
+Pomiary czasu dla funkcji copy przy użyciu funkcji lib:
+Czas uzytkownika: 0.0000000000, czas systemowy: 0.0000000000
+
+Pomiary czasu dla funkcji sort przy użyciu funkcji sys:
+Czas uzytkownika: 2.4400000000, czas systemowy: 3.5700000000
+
+Pomiary czasu dla funkcji sort przy użyciu funkcji lib:
+Czas uzytkownika: 2.8800000000, czas systemowy: 3.6400000000
+
+
+
+Liczba rekordów: 4000, Długość rekordu: 512
+Pomiary czasu dla funkcji copy przy użyciu funkcji sys:
+Czas uzytkownika: 0.0000000000, czas systemowy: 0.0100000000
+
+Pomiary czasu dla funkcji copy przy użyciu funkcji lib:
+Czas uzytkownika: 0.0000000000, czas systemowy: 0.0000000000
+
+Pomiary czasu dla funkcji sort przy użyciu funkcji sys:
+Czas uzytkownika: 10.1000000000, czas systemowy: 14.2300000000
+
+Pomiary czasu dla funkcji sort przy użyciu funkcji lib:
+Czas uzytkownika: 11.5700000000, czas systemowy: 15.0200000000
+
+
+
+Liczba rekordów: 1000, Długość rekordu: 4096
+Pomiary czasu dla funkcji copy przy użyciu funkcji sys:
+Czas uzytkownika: 0.0000000000, czas systemowy: 0.0000000000
+
+Pomiary czasu dla funkcji copy przy użyciu funkcji lib:
+Czas uzytkownika: 0.0000000000, czas systemowy: 0.0000000000
+
+Pomiary czasu dla funkcji sort przy użyciu funkcji sys:
+Czas uzytkownika: 3.3400000000, czas systemowy: 1.4800000000
+
+Pomiary czasu dla funkcji sort przy użyciu funkcji lib:
+Czas uzytkownika: 3.5100000000, czas systemowy: 1.8700000000
+
+
+
+Liczba rekordów: 2000, Długość rekordu: 4096
+Pomiary czasu dla funkcji copy przy użyciu funkcji sys:
+Czas uzytkownika: 0.0000000000, czas systemowy: 0.0100000000
+
+Pomiary czasu dla funkcji copy przy użyciu funkcji lib:
+Czas uzytkownika: 0.0000000000, czas systemowy: 0.0000000000
+
+Pomiary czasu dla funkcji sort przy użyciu funkcji sys:
+Czas uzytkownika: 13.3400000000, czas systemowy: 5.8700000000
+
+Pomiary czasu dla funkcji sort przy użyciu funkcji lib:
+Czas uzytkownika: 14.1000000000, czas systemowy: 7.4900000000
+
+
+
+Liczba rekordów: 1000, Długość rekordu: 8192
+Pomiary czasu dla funkcji copy przy użyciu funkcji sys:
+Czas uzytkownika: 0.0000000000, czas systemowy: 0.0300000000
+
+Pomiary czasu dla funkcji copy przy użyciu funkcji lib:
+Czas uzytkownika: 0.0000000000, czas systemowy: 0.0100000000
+
+Pomiary czasu dla funkcji sort przy użyciu funkcji sys:
+Czas uzytkownika: 6.3800000000, czas systemowy: 2.0200000000
+
+Pomiary czasu dla funkcji sort przy użyciu funkcji lib:
+Czas uzytkownika: 6.7200000000, czas systemowy: 2.3600000000
+
+
+
+Liczba rekordów: 2000, Długość rekordu: 8192
+Pomiary czasu dla funkcji copy przy użyciu funkcji sys:
+Czas uzytkownika: 0.0000000000, czas systemowy: 0.0200000000
+
+Pomiary czasu dla funkcji copy przy użyciu funkcji lib:
+Czas uzytkownika: 0.0000000000, czas systemowy: 0.0200000000
+
+Pomiary czasu dla funkcji sort przy użyciu funkcji sys:
+Czas uzytkownika: 26.0500000000, czas systemowy: 8.0600000000
+
+Pomiary czasu dla funkcji sort przy użyciu funkcji lib:
+Czas uzytkownika: 26.6000000000, czas systemowy: 9.4400000000
+
+
+WNIOSKI:
+Dla bardzo małych długości rekordów (np. 4) przy użyciu funkcji systemowych
+czas użytkownika jest mniejszy, a czas systemowy wiekszy niż przy użyciu funkcji bibliotecznych.
+Dla większych długości (u nas 512, 4096, 8192) to obydwa czasy przy użyciu funkcji systemowych
+są mniejsze, niż przy użyciu funkcji bibliotecznych. 
