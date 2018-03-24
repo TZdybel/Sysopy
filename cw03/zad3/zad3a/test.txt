@@ -1,0 +1,6 @@
+ls -a -l
+touch plik.txt
+mkdir testowykatalog
+isdhb
+cat Makefile
+xfjl
