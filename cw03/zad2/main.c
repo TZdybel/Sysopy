@@ -54,7 +54,7 @@ int main (int argc, char *argv[]) {
             wait(&status);
             if(status != 0) {
                 printf("Something went wrong. Check input file for errors\n");
-                exit(1);
+                break;
             }
         }
         free(words[size]);
