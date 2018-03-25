@@ -1,0 +1,24 @@
+MEMTEST = memoryTest.c
+MEMTESTO = memoryTest.o
+MEMTESTEXE = memoryTest
+TESTTIME = testTime.c
+TESTTIMEO = testTime.o
+TESTTIMEEXE = testTime
+
+
+all: $(MEMTESTO) $(MEMTESTEXE) $(TESTTIMEO) $(TESTTIMEEXE)
+
+clean:
+	rm -r $(MEMTESTO) $(MEMTESTEXE) $(TESTTIMEO) $(TESTTIMEEXE)
+
+$(MEMTESTO): $(MEMTEST)
+	gcc -c $(MEMTEST)
+
+$(MEMTESTEXE): $(MEMTESTO)
+	gcc $(MEMTESTO) -o $(MEMTESTEXE)
+
+$(TESTTIMEO): $(TESTTIME)
+	gcc -c $(TESTTIME)
+
+$(TESTTIMEEXE): $(TESTTIMEO)
+	gcc $(TESTTIMEO) -o $(TESTTIMEEXE)

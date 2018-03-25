@@ -1,5 +1,7 @@
 ls -a -l
 touch plik.txt
+../zad3b/memoryTest
+../zad3b/testTime
 mkdir testowykatalog
 isdhb
 cat Makefile
