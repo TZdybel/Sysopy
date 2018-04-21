@@ -1,6 +1,6 @@
 ls -l /home/tzdybel | grep mar | grep 4096 | grep 16
 touch plik.txt
-l -l | grep kwi | grep 13
+ls -l | grep kwi | grep 13
 isdhb
 cat Makefile
 xfjl
