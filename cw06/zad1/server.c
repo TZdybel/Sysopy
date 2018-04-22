@@ -92,7 +92,7 @@ int main() {
     setSignals();
 
     int serverq;
-    if ((serverq = msgget(ftok("test.txt", 3), 0666 | IPC_CREAT)) == -1) {
+    if ((serverq = msgget(ftok("msgbuf.h", 3), 0666 | IPC_CREAT)) == -1) {
         printf("Error with client->server queue\n");
         exit(1);
     }
@@ -102,7 +102,6 @@ int main() {
 
     struct msqid_ds stat;
     int continueWork = 1, timeToEnd = 0;
-    sleep(10);
     while(continueWork > 0) {
         msgrcv(serverq, &msg, sizeof(struct msgbuf) - sizeof(long), 0, 0);
         switch(msg.mtype) {

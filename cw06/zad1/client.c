@@ -110,7 +110,7 @@ int main (int argc, char *argv[]) {
     setSignals();
 
     int serverq, clientq;
-    if ((serverq = msgget(ftok("test.txt", 3), 0)) == -1) {
+    if ((serverq = msgget(ftok("msgbuf.h", 3), 0)) == -1) {
         printf("Error with client->server queue\n");
         exit(1);
     }

@@ -1,6 +1,10 @@
 MIRROR qwertyuiop
 CALC 2+3
+teszxjygvkli
+guciukhvbl
+jhvoj
 CALC 100-76
 END
 CALC 3*3
 TIME
+
