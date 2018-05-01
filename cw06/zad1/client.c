@@ -139,6 +139,7 @@ int main (int argc, char *argv[]) {
         commandsFromStdin(f, &msg, serverq, clientq);
     }
 
+    fclose(f);
     if(msgctl(clientq, IPC_RMID, NULL) == 0) {
         printf("Success\n");
     }

@@ -1,0 +1,6 @@
+MIRROR qwertyuiop
+CALC 2+3
+CALC 100-76
+CALC 3*3
+TIME
+END
