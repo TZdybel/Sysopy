@@ -1,0 +1,28 @@
+Obraz: venus2.ascii.pgm
+Rozmiar: 640x480
+
+---------------------------------------------------------
+1) Filtr: filtr.txt 
+Rozmiar: 40x40
+
+a) Wątków: 1
+Real time elapsed: 5.2400000000
+b) Wątków: 2
+Real time elapsed: 2.6700000000
+c) Wątków: 4
+Real time elapsed: 2.6400000000
+d) Wątków: 8
+Real time elapsed: 2.5800000000
+
+---------------------------------------------------------
+2) Filtr: filtr2.txt 
+Rozmiar: 10x10
+
+a) Wątków: 1
+Real time elapsed: 0.3400000000
+b) Wątków: 2
+Real time elapsed: 0.1700000000
+c) Wątków: 4
+Real time elapsed: 0.1700000000
+d) Wątków: 8
+Real time elapsed: 0.1600000000
