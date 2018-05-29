@@ -1,0 +1,1 @@
+2 2 20 /home/tzdybel/CLionProjects/zestaw9/pantadeusz.txt 30 = 0 0
