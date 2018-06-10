@@ -25,7 +25,10 @@ void init(char *portstr, char *path) {
     unixpath = (char *)calloc(108, sizeof(char));
     strcpy(unixpath, path);
 
-    for (int i = 0; i < MAX_CLIENTS; ++i) clients[i].fd = -1;
+    for (int i = 0; i < MAX_CLIENTS; ++i) {
+        clients[i].addrlen = 0;
+        clients[i].src_addr = (struct sockaddr *)calloc(1, sizeof(struct sockaddr));
+    }
     for (int i = 0; i < MAX_CLIENTS; ++i) activity_of_clients[i] = -1;
 
     uint16_t port = (uint16_t) strtol(portstr, NULL, 10);
@@ -38,11 +41,11 @@ void init(char *portstr, char *path) {
         exit(1);
     }
 
-    if ((inetfd = socket(AF_INET, SOCK_STREAM, 0)) == -1) {
+    if ((inetfd = socket(AF_INET, SOCK_DGRAM, 0)) == -1) {
         printf("Error with creating INET socket\n");
         exit(1);
     }
-    if ((unixfd = socket(AF_UNIX, SOCK_STREAM, 0)) == -1) {
+    if ((unixfd = socket(AF_UNIX, SOCK_DGRAM, 0)) == -1) {
         printf("Error with creating UNIX socket\n");
         exit(1);
     }
@@ -54,16 +57,11 @@ void init(char *portstr, char *path) {
 
     struct sockaddr_un unixaddr;
     unixaddr.sun_family = AF_UNIX;
-    strcpy(unixaddr.sun_path, path);
+    strcpy(unixaddr.sun_path, unixpath);
 
     if (bind(inetfd, (const struct sockaddr *)&inetaddr, sizeof(inetaddr)) == -1 ||
         bind(unixfd, (const struct sockaddr *)&unixaddr, sizeof(unixaddr)) == -1) {
         printf("Error with binding sockets\n");
-        exit(1);
-    }
-
-    if (listen(inetfd, 10) == -1 || listen(unixfd, 10) == -1) {
-        printf("Error with listening to sockets\n");
         exit(1);
     }
 
@@ -92,26 +90,26 @@ void init(char *portstr, char *path) {
 }
 
 void closeall() {
-    shutdown(unixfd, SHUT_RDWR);
-    shutdown(inetfd, SHUT_RDWR);
-
     close(inetfd);
     close(unixfd);
     unlink(unixpath);
 
+    free(unixpath);
     pthread_cancel(pingthread);
     pthread_cancel(commandthread);
 }
 
-void register_client(int clientfd) {
+void register_client(int socketfd) {
+    struct sockaddr *src_addr = (struct sockaddr *)calloc(1, sizeof(struct sockaddr));
+    socklen_t addrlen = sizeof(struct sockaddr);
     uint16_t length;
-    if (recv(clientfd, &length, 2, 0) == -1) {
+    if (recvfrom(socketfd, &length, 2, 0, src_addr, &addrlen) == -1) {
         printf("Error with receiving\n");
         exit(1);
     }
 
     char *clientname = (char *)calloc(length + 1, sizeof(char));
-    if (recv(clientfd, clientname, length, 0) == -1) {
+    if (recvfrom(socketfd, clientname, length, 0, src_addr, &addrlen) == -1) {
         printf("Error with receiving\n");
         exit(1);
     }
@@ -119,59 +117,52 @@ void register_client(int clientfd) {
     pthread_mutex_lock(&clients_mutex);
     int index = -1;
     for (int i = 0; i < MAX_CLIENTS; ++i) {
-        if (clients[i].fd == -1) {
+        if (clients[i].addrlen == 0) {
             index = i;
             break;
         }
         if (strcmp(clients[i].name, clientname) == 0) {
             uint8_t type = NAME_IN_USE;
-            send(clientfd, &type, 1, 0);
-            epoll_ctl(epoll, EPOLL_CTL_DEL, clientfd, NULL);
-            shutdown(clientfd, SHUT_RDWR);
-            close(clientfd);
+            sendto(socketfd, &type, 1, 0, src_addr, addrlen);
             pthread_mutex_unlock(&clients_mutex);
             return;
         }
     }
     if (index == -1) {
         uint8_t type = TOO_MANY_CLIENTS;
-        send(clientfd, &type, 1, 0);
-        epoll_ctl(epoll, EPOLL_CTL_DEL, clientfd, NULL);
-        shutdown(clientfd, SHUT_RDWR);
-        close(clientfd);
+        sendto(socketfd, &type, 1, 0, src_addr, addrlen);
         pthread_mutex_unlock(&clients_mutex);
         return;
     }
 
     client client;
-    client.fd = clientfd;
+    client.src_addr = src_addr;
+    client.addrlen = addrlen;
     strcpy(client.name, clientname);
     clients[index] = client;
     activity_of_clients[index] = 1;
     pthread_mutex_unlock(&clients_mutex);
 
     uint8_t type = REGISTERED;
-    send(clientfd, &type, 1, 0);
+    sendto(socketfd, &type, 1, 0, src_addr, addrlen);
     printf("Client %s registered\n", clientname);
     free(clientname);
 }
 
-void delete_client(int clientfd) {
+void delete_client(int socketfd) {
+    struct sockaddr *src_addr = (struct sockaddr *)calloc(1, sizeof(struct sockaddr));
+    socklen_t addrlen = sizeof(struct sockaddr);
     uint16_t length;
-    recv(clientfd, &length, 2, 0);
+    recvfrom(socketfd, &length, 2, 0, src_addr, &addrlen);
     char *name = (char *)calloc(length + 1, sizeof(char));
-    recv(clientfd, name, length, 0);
-
-    epoll_ctl(epoll, EPOLL_CTL_DEL, clientfd, NULL);
-    shutdown(clientfd, SHUT_RDWR);
-    close(clientfd);
+    recvfrom(socketfd, name, length, 0, src_addr, &addrlen);
 
     int deleted = 0;
     pthread_mutex_lock(&clients_mutex);
     for (int i = 0; i < MAX_CLIENTS; ++i) {
         if (strcmp(clients[i].name, name) == 0) {
             deleted = 1;
-	    clients[i].fd = -1;
+            clients[i].addrlen = 0;
             strcpy(clients[i].name, "");
             activity_of_clients[i] = -1;
         }
@@ -182,39 +173,44 @@ void delete_client(int clientfd) {
     free(name);
 }
 
-void get_result(int clientfd) {
+void get_result(int socketfd) {
+    struct sockaddr *src_addr = (struct sockaddr *)calloc(1, sizeof(struct sockaddr));
+    socklen_t addrlen = sizeof(struct sockaddr);
     uint16_t length;
-    recv(clientfd, &length, 2, 0);
+    recvfrom(socketfd, &length, 2, 0, src_addr, &addrlen);
     result result;
-    recv(clientfd, &result, length, 0);
+    recvfrom(socketfd, &result, length, 0, src_addr, &addrlen);
     int index;
     pthread_mutex_lock(&clients_mutex);
     for (int i = 0; i < MAX_CLIENTS; ++i) {
-        if(clients[i].fd == clientfd) {
+        if(strcmp(clients[i].name, result.clientname) == 0) {
             index = i;
+            break;
         }
     }
     pthread_mutex_unlock(&clients_mutex);
-    printf("Got a result of order nr %d from client %s - result: %d\n", result.ID, clients[index].name, result.result);
+    printf("Got a result of order no. %d from client %s - result: %d\n", result.ID, clients[index].name, result.result);
 }
 
-void receive_message(int clientfd) {
+void receive_message(int socketfd) {
+    struct sockaddr *src_addr = (struct sockaddr *)calloc(1, sizeof(struct sockaddr));
+    socklen_t addrlen = sizeof(struct sockaddr);
     uint8_t type;
     uint16_t length;
     char *name;
-    if (recv(clientfd, &type, 1, 0) == -1) {
+    if (recvfrom(socketfd, &type, 1, 0, src_addr, &addrlen) == -1) {
         printf("Error with receiving\n");
         exit(1);
     }
 
     switch(type) {
         case REGISTER:
-            register_client(clientfd);
+            register_client(socketfd);
             break;
         case ANSWER_TO_PING:
-            recv(clientfd, &length, 2, 0);
+            recvfrom(socketfd, &length, 2, 0, src_addr, &addrlen);
             name = (char *)calloc(length + 1, sizeof(char));
-            recv(clientfd, name, length, 0);
+            recvfrom(socketfd, name, length, 0, src_addr, &addrlen);
             pthread_mutex_lock(&clients_mutex);
             for (int i = 0; i < MAX_CLIENTS; ++i) {
                 if(strcmp(clients[i].name, name) == 0) {
@@ -226,44 +222,34 @@ void receive_message(int clientfd) {
             pthread_mutex_unlock(&clients_mutex);
             break;
         case DELETE:
-            delete_client(clientfd);
+            delete_client(socketfd);
             break;
         case RESULT:
-            get_result(clientfd);
+            get_result(socketfd);
             break;
         default:
             break;
     }
 }
 
-void add_to_epoll(int socketfd) {
-    int clientfd = accept(socketfd, NULL, NULL);
-
-    struct epoll_event event;
-    event.events = EPOLLIN | EPOLLPRI;
-    event.data.fd = clientfd;
-
-    epoll_ctl(epoll, EPOLL_CTL_ADD, clientfd, &event);
-}
-
 void *ping_clients(void *args) {
     while (1) {
         sleep(5);
+//        printf("Pinging\n");
         pthread_mutex_lock(&clients_mutex);
         for (int i = 0; i < MAX_CLIENTS; ++i) {
             if (activity_of_clients[i] == 1) {
                 uint8_t type = PING;
-                send(clients[i].fd, &type, 1, 0);
+                if (clients[i].src_addr->sa_family == AF_INET) sendto(inetfd, &type, 1, 0, clients[i].src_addr, clients[i].addrlen);
+                else sendto(unixfd, &type, 1, 0, clients[i].src_addr, clients[i].addrlen);
                 activity_of_clients[i] = 0;
             } else if (activity_of_clients[i] == 0) {
-		printf("Deleting client %s because of inactivity\n", clients[i].name);
-                epoll_ctl(epoll, EPOLL_CTL_DEL, clients[i].fd, NULL);
-                shutdown(clients[i].fd, SHUT_RDWR);
-                close(clients[i].fd);
-
-                clients[i].fd = -1;
+                printf("Deleting client %s because of inactivity\n", clients[i].name);
+                activity_of_clients[i] = -1;
+                clients[i].addrlen = 0;
+                strcpy(clients[i].src_addr->sa_data, "");
+                clients[i].src_addr->sa_family = 0;
                 strcpy(clients[i].name, "");
-		activity_of_clients[i] = -1;
             }
         }
         pthread_mutex_unlock(&clients_mutex);
@@ -280,14 +266,14 @@ void *send_commands(void *args) {
         struct timespec time;
         time.tv_nsec = 100000000;
         time.tv_sec = 0;
-        nanosleep(&time, NULL);
+        nanosleep(&time, NULL);         //żeby ładniej się wyświetlało
         printf("Enter some operation: ");
         char *command = (char *)calloc(200, sizeof(char));
         fgets(command, 200, stdin);
-	if (strchr(command, '+') == NULL && strchr(command, '-') == NULL && strchr(command, '/') == NULL && strchr(command, '*') == NULL) {
-	    printf("Wrong command\n");
-            continue;	
-	}
+        if (strchr(command, '+') == NULL && strchr(command, '-') == NULL && strchr(command, '/') == NULL && strchr(command, '*') == NULL) {
+            printf("Wrong command\n");
+            continue;
+        }
         int tmp = (int) strcspn(command, "+-/*");
         char op = command[tmp];
         int arg1 = (int) strtol(strtok(command, " +-/*"), NULL, 10);
@@ -299,18 +285,23 @@ void *send_commands(void *args) {
         uint8_t type = ORDER;
         uint16_t length = (uint16_t) sizeof(operation);
 
-        int clientfd = -1;
+        client client;
+        client.addrlen = 0;
 //        printf("Searching for a client...\n");
-        while (clientfd == -1) {
-            if ((clientfd = clients[rand()%MAX_CLIENTS].fd) != -1) {
+        while (client.addrlen == 0) {
+            client = clients[rand()%MAX_CLIENTS];
+            if (client.addrlen != 0) {
                 pthread_mutex_lock(&clients_mutex);
             }
         }
 //        printf("Client found!\n");
-
-        send(clientfd, &type, 1, 0);
-        send(clientfd, &length, 2, 0);
-        send(clientfd, &operation, length, 0);
+//        printf("Send to client %s\n", client.name);
+        int socketfd;
+        if (client.src_addr->sa_family == AF_UNIX) socketfd = unixfd;
+        else socketfd = inetfd;
+        sendto(socketfd, &type, 1, 0, client.src_addr, client.addrlen);
+        sendto(socketfd, &length, 2, 0, client.src_addr, client.addrlen);
+        sendto(socketfd, &operation, length, 0, client.src_addr, client.addrlen);
         pthread_mutex_unlock(&clients_mutex);
     }
 }
@@ -338,8 +329,7 @@ int main(int argc, char *argv[]) {
             printf("Did not receive any events from epoll\n");
             exit(1);
         }
-        if (event.data.fd == unixfd) add_to_epoll(unixfd);
-        else if (event.data.fd == inetfd) add_to_epoll(inetfd);
-        else receive_message(event.data.fd);
+        if (event.data.fd == unixfd) receive_message(unixfd);
+        else if (event.data.fd == inetfd) receive_message(inetfd);
     }
 }

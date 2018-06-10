@@ -24,7 +24,7 @@ void web_init(char *serveraddr) {
         exit(1);
     }
 
-    if ((socketfd = socket(AF_INET, SOCK_STREAM, 0)) == -1) {
+    if ((socketfd = socket(AF_INET, SOCK_DGRAM, 0)) == -1) {
         printf("Error with creating INET socket\n");
         exit(1);
     }
@@ -36,14 +36,14 @@ void web_init(char *serveraddr) {
     struct in_addr inp;
     if (inet_aton(serveraddr, &inp) == -1) {
         printf("Error with IP address");
-	exit(1);
+        exit(1);
     }
 
     sockaddr.sin_addr = inp;
 
     if(connect(socketfd, (const struct sockaddr *)&sockaddr, sizeof(sockaddr)) == -1) {
         printf("Error with connecting to server");
-	exit(1);
+        exit(1);
     }
 }
 
@@ -53,7 +53,7 @@ void unix_init(char *path) {
         exit(1);
     }
 
-    if ((socketfd = socket(AF_UNIX, SOCK_STREAM, 0)) == -1) {
+    if ((socketfd = socket(AF_UNIX, SOCK_DGRAM, 0)) == -1) {
         printf("Error with creating UNIX socket\n");
         exit(1);
     }
@@ -62,9 +62,14 @@ void unix_init(char *path) {
     sockaddr.sun_family = AF_UNIX;
     strcpy(sockaddr.sun_path, path);
 
+    if (bind(socketfd, (const struct sockaddr *)&sockaddr, sizeof(sa_family_t)) == -1) {
+        printf("Error with binding sockets\n");
+        exit(1);
+    }
+
     if (connect(socketfd, (const struct sockaddr *) &sockaddr, sizeof(sockaddr)) == -1) {
         printf("Error with connecting to server");
-	exit(1);
+        exit(1);
     }
 }
 
@@ -93,7 +98,7 @@ void register_on_server(char *name) {
 }
 
 void closeall() {
-    shutdown(socketfd, SHUT_RDWR);
+//    shutdown(socketfd, SHUT_RDWR);
     close(socketfd);
 }
 
@@ -116,13 +121,14 @@ void setsignals() {
 }
 
 void answer_to_order() {
-    printf("ORDER\n");
+    printf("Received ORDER\n");
     uint16_t length;
     recv(socketfd, &length, 2, 0);
     operation operation;
     recv(socketfd, &operation, length, 0);
 
     result result;
+    strcpy(result.clientname, name);
     result.result = 0;
     result.ID = operation.ID;
 
