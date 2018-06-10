@@ -17,10 +17,14 @@ client clients[MAX_CLIENTS];
 int activity_of_clients[MAX_CLIENTS];
 int counter = 0;
 pthread_t pingthread, commandthread;
+char *unixpath;
 
 void closeall();
 
 void init(char *portstr, char *path) {
+    unixpath = (char *)calloc(108, sizeof(char));
+    strcpy(unixpath, path);
+
     for (int i = 0; i < MAX_CLIENTS; ++i) clients[i].fd = -1;
     for (int i = 0; i < MAX_CLIENTS; ++i) activity_of_clients[i] = -1;
 
@@ -50,7 +54,7 @@ void init(char *portstr, char *path) {
 
     struct sockaddr_un unixaddr;
     unixaddr.sun_family = AF_UNIX;
-    strcpy(unixaddr.sun_path, "path");
+    strcpy(unixaddr.sun_path, path);
 
     if (bind(inetfd, (const struct sockaddr *)&inetaddr, sizeof(inetaddr)) == -1 ||
         bind(unixfd, (const struct sockaddr *)&unixaddr, sizeof(unixaddr)) == -1) {
@@ -93,7 +97,7 @@ void closeall() {
 
     close(inetfd);
     close(unixfd);
-    unlink("path");
+    unlink(unixpath);
 
     pthread_cancel(pingthread);
     pthread_cancel(commandthread);
